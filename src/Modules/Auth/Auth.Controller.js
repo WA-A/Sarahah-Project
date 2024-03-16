@@ -6,6 +6,8 @@ export const SignUp = async (req,res)=>{
 
     const {UserName,Email,Password} = req.body;
     const user = await UserModel.findOne({Email});
+    
+    
     if(user){
         return res.json({message:"Email already exists"});
         
@@ -18,7 +20,8 @@ export const SignUp = async (req,res)=>{
     if(!newUser){
     return res.json({message:" error while creating user"});
   }
-  return res.json({message:" success",newUser});
+    
+  return res.json({message:"success",newUser});
 };
 
 
@@ -26,7 +29,7 @@ export const SignIn = async (req,res)=>{
 
   const {Email,Password} = req.body;
   const user = await UserModel.findOne({Email}).select('UserName Password');
-  if(user){
+  if(!user){
       return res.json({message:"Email not exists"});
       
   }
