@@ -40,6 +40,6 @@ export const SignIn = async (req,res)=>{
   return res.json({message:" Invalid Password"});
 }
 
-const token = jwt.sign({id:user._id},process.env.LOGINTOKEN)
+const token = jwt.sign({id:user._id},process.env.LOGINSIG)
 return res.json({message:" success",token});
 };
