@@ -1,6 +1,7 @@
 import UserModel from './../../../Module/UserModel.js';
 import bcrypt from'bcryptjs';
 import jwt from 'jsonwebtoken';
+import SendEmail from './../../Untils/SendEmail.js'
 
 export const SignUp = async (req,res)=>{
 
@@ -21,8 +22,13 @@ export const SignUp = async (req,res)=>{
     return res.json({message:" error while creating user"});
   }
     
+
+  const html = `<h2>wasan awwad</h2>`;
+    SendEmail(Email,'welcome wasan',html);
+
   return res.json({message:"success",newUser});
 };
+
 
 
 
