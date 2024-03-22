@@ -13,5 +13,4 @@ router.post("/signup",validation(SignupSchema),asyncHandler(AuthController.SignU
 router.post("/signin",validation(SigninSchema),asyncHandler(AuthController.SignIn) );
 
 
-
 export default router;
