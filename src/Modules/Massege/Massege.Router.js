@@ -1,9 +1,10 @@
 import { Router } from "express";
 import * as MassegeController from './Massege.Controller.js';
-import { asyncHandler } from "../../Untils/errorHandling.js";
+import auth from "./../../MiddleWare/auth.MiddleWare.js"
 
 const router = Router();
 
-router.get('/',asyncHandler(MassegeController.getMessage));
+router.get('/',auth,(MassegeController.getMessage));
+router.post('/sendMessage/:receiverId',(MassegeController.SendMessage));
 
  export default router

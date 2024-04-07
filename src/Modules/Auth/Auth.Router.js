@@ -11,6 +11,6 @@ const router = Router();
 
 router.post("/signup",validation(SignupSchema),asyncHandler(AuthController.SignUp) );
 router.post("/signin",validation(SigninSchema),asyncHandler(AuthController.SignIn) );
-
+router.post("/confirmEmail:Email",asyncHandler(AuthController.confirmEmail) );
 
 export default router;

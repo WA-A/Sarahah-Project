@@ -5,7 +5,7 @@ import UserRouter from './User/User.Router.js'
 const Appinit = (app,express)=>{
     app.use(express.json());
     connectDB();
-    app.use('/massege',MassegeRouter);
+    app.use('/message',MassegeRouter);
     app.use('/auth',AuthRouter);
     app.use('/user',UserRouter);
 }
