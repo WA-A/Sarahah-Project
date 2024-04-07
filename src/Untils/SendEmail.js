@@ -10,6 +10,7 @@ async function SendEmail(to,subject,html){ //Dynamic
         },
       });
       
+
       // async..await is not allowed in global scope, must use a wrapper
      
         // send mail with defined transport object

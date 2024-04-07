@@ -21,12 +21,17 @@ export const SignUp = async (req,res)=>{
     if(!newUser){
     return res.json({message:" error while creating user"});
   }
-    
 
-  const html = `<h2>wasan awwad</h2>`;
+  const token = await jwt.sign({Email},process.env.CONFIRMEMAILTOKEN,{expiresIn:60*1});
+  const refreshToken = await jwt.sign({Email},process.env.CONFIRMEMAILTOKEN,{expiresIn:60*60*24*30})
+
+  const html = `
+  <h2>Welcome ${UserName}</h2>
+  <a href='http://localhost:3000/auth/confirmEmail/${token}'> click to confirm email</a>
+  <a href='http://localhost:3000/auth/newconfirmEmail/${refreshToken}'> resend confirm email</a>
+  `;
     SendEmail(Email,'welcome wasan',html);
-
-  return res.json({message:"success",newUser});
+  return res.status(201).json({message:"success",newUser});
 };
 
 
@@ -50,3 +55,13 @@ export const SignIn = async (req,res)=>{
 const token = jwt.sign({id:user._id},process.env.LOGINSIG)
 return res.json({message:" success",token});
 };
+
+export const confirmEmail = async(req,res)=>{
+  const {Email} = req.params;
+  const decoded =  jwt.verify(token,process.env.CONFIRMEMAIL);
+  const user = await UserModel.findOneAndUpdate({Email:decoded.Email},{confirmEmail:true},{new:true});
+   if(user.modifiedCount >0) {
+ return res.redirect(process.env.FEURL);
+   }
+  
+}
