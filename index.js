@@ -4,7 +4,7 @@ import Appinit from './src/Modules/app.router.js';
 
 dotenv.config();
 const app = express()
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 Appinit(app,express);
 
