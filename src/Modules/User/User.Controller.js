@@ -7,6 +7,8 @@ export const getProfile = async(req,res,next)=>{
 }
 
 export const UplodeImage = async(req,res,next)=>{
-    
-    return res.json(req.file);
+    const imgUrl = req.file.destination +'/'+ req.file.filename;
+    const user = await UserModel.findByIdAndUpdate(req.user._id,
+    {ProfilePic:imgUrl},{new:true})
+    return res.json({message:"success",imgUrl});
 }

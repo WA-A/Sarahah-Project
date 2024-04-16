@@ -8,6 +8,6 @@ import fileUpload from "../../Untils/Multer.js";
 const router = Router();
 
 router.get("/profile",asyncHandler(auth),asyncHandler(UserController.getProfile));
-router.patch("/profilepic",fileUpload().single('image'),asyncHandler(UserController.UplodeImage)); // request by form data
+router.patch("/profilepic",auth,fileUpload().single('image'),asyncHandler(UserController.UplodeImage)); // request by form data
 
 export default router

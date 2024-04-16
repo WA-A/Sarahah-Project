@@ -16,8 +16,17 @@ function fileUpload(){
         }
     );
 
-    const upload = multer({ storage });
-    return upload;
+    function fileFilter (req, file, cb) {
+         if (['image/jpeg','image/svg+xml','image/gif'].includes(file.mimetype)){
+        cb(null,true);
+     }
+     else{
+         cb("inavlid format",false);
+     }
+    
+       }
+       const upload = multer ({fileFilter,storage});
+       return upload;
 }
 
 export default fileUpload;
