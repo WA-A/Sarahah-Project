@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import { GeneralFields } from '../../MiddleWare/validation.js';
 
 export const SignupSchema = {
     body:Joi.object({
@@ -6,7 +7,7 @@ export const SignupSchema = {
             "String.empty":"UserName is required ",
             "any.required":"UserName is required ",
         }),
-        Email:Joi.string().email().required(),
+        Email:GeneralFields.email,
         Password:Joi.string().min(8).max(20).required(),
         cPassword:Joi.valid(Joi.ref('Password')).required(),
         age:Joi.number().min(20).positive().integer(),
@@ -23,7 +24,7 @@ export const SignupSchema = {
 export const SigninSchema = {
     body:Joi.object({
     
-        Email:Joi.string().email().required(),
+        Email:GeneralFields.email,
         Password:Joi.string().min(8).max(20).required(),
         
     })

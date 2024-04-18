@@ -1,5 +1,9 @@
-
+import joi from 'joi';
 const dataMethods = ['body','query','params','headers'];
+
+export const GeneralFields ={
+  email:joi.string().min(5).max(30).email().required(),
+}
 
 const validation = (schema)=>{
     
