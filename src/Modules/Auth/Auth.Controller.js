@@ -3,14 +3,14 @@ import bcrypt from'bcryptjs';
 import jwt from 'jsonwebtoken';
 import SendEmail from './../../Untils/SendEmail.js'
 
-export const SignUp = async (req,res)=>{
+export const SignUp = async (req,res,next)=>{
 
     const {UserName,Email,Password} = req.body;
 
     const user = await UserModel.findOne({Email});
     
     if(user){
-        return res.json({message:"Email already exists"});
+        return next(new Error ("Email already exists"));
         
     }
 
