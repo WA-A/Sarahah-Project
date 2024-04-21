@@ -1,3 +1,4 @@
+import CommentModel from '../../../Module/CommentModel.js';
 import PostModel from '../../../Module/PostModel.js';
 import cloudinary from '../../Untils/Cloudinary.js';
 
@@ -16,6 +17,32 @@ if(!Post){
 return res.status(201).json({message:"success",Post});
 }
 
+export const GetPost = async (req,res,next)=>{
+
+   const Posts = await PostModel.find({}).populate([
+    {
+        path:'UserId',
+        select:'UserName -_id'
+    },
+    {
+        path:'like',
+        select:'UserName'
+    },
+    {
+        path:'unlike',
+        select:'UserName'
+    }
+   ]);
+
+   const PostsLists = [];
+   for(let i of Posts) {
+    const comment = await CommentModel.find({PostId:postMessage._id})
+   PostsLists.push({i,comment})
+}
+return res.json({message:"success",Posts:PostsLists});
+
+
+}
 
 export const LikePost = async (req,res,next)=>{
 
@@ -65,3 +92,4 @@ if(!Post){
 
 return res.status(201).json({message:"success",Post});
 }
+
