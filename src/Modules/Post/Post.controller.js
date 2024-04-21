@@ -1,5 +1,5 @@
-import PostModel from '../../../Module/Post.model.js';
-import cloudinary from './../../Untils/Cloudinary.js';
+import PostModel from '../../../Module/PostModel.js';
+import cloudinary from '../../Untils/Cloudinary.js';
 
 
 export const CreatePost = async (req,res,next)=>{
