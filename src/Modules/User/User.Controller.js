@@ -10,7 +10,7 @@ export const getProfile = async(req,res,next)=>{
 
 
 export const UplodeImage = async(req,res,next)=>{
-    //const imgUrl = req.file.destination +'/'+ req.file.filename;
+   //const imgUrl = req.file.destination +'/'+ req.file.filename;
     if(!req.file){
         return res.json({message:"error"});
   }
